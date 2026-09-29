@@ -11,22 +11,14 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 
 
 # ============================================================
-# MODELO YOLO DE 2 CLASES
+# MODELO YOLO ENTRENADO
 # ============================================================
 
-MODEL_PATH = (
-    BASE_DIR
-    / "runs"
-    / "detect"
-    / "runs"
-    / "agroia_soil_2clases-2"
-    / "weights"
-    / "best.pt"
-)
+MODEL_PATH = BASE_DIR / "models" / "best.pt"
 
 
 # ============================================================
-# CARGAR MODELO ENTRENADO
+# CARGAR MODELO
 # ============================================================
 
 model = YOLO(str(MODEL_PATH))
@@ -101,9 +93,7 @@ def analizar_frame(frame):
 
             clase_id = int(box.cls[0])
 
-            confianza = float(
-                box.conf[0]
-            )
+            confianza = float(box.conf[0])
 
             coordenadas = box.xyxy[0].tolist()
 
